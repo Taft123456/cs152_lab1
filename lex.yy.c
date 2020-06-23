@@ -453,8 +453,8 @@ int yy_flex_debug = 0;
 #define YY_MORE_ADJ 0
 #define YY_RESTORE_YY_MORE_OFFSET
 char *yytext;
-#line 1 "Task1.lex"
-#line 2 "Task1.lex"
+#line 1 "Task2.lex"
+#line 2 "Task2.lex"
   int currentLine = 1, currentPosition = 1;  
 #line 460 "lex.yy.c"
 
@@ -638,7 +638,7 @@ YY_DECL
 	register char *yy_cp, *yy_bp;
 	register int yy_act;
     
-#line 7 "Task1.lex"
+#line 7 "Task2.lex"
 
 
 #line 645 "lex.yy.c"
@@ -726,73 +726,73 @@ do_action:	/* This label is used only to access EOF actions. */
 
 case 1:
 YY_RULE_SETUP
-#line 9 "Task1.lex"
+#line 9 "Task2.lex"
 {printf("NUMBER %s\n", yytext); 
             currentPosition += yyleng;}
 	YY_BREAK
 case 2:
 YY_RULE_SETUP
-#line 12 "Task1.lex"
+#line 12 "Task2.lex"
 {printf("PLUS\n"); 
             currentPosition += yyleng;}
 	YY_BREAK
 case 3:
 YY_RULE_SETUP
-#line 15 "Task1.lex"
+#line 15 "Task2.lex"
 {printf("MINUS\n"); 
             currentPosition += yyleng;}
 	YY_BREAK
 case 4:
 YY_RULE_SETUP
-#line 18 "Task1.lex"
+#line 18 "Task2.lex"
 {printf("MULT\n"); 
             currentPosition += yyleng;}
 	YY_BREAK
 case 5:
 YY_RULE_SETUP
-#line 21 "Task1.lex"
+#line 21 "Task2.lex"
 {printf("DIV\n"); 
             currentPosition += yyleng;}
 	YY_BREAK
 case 6:
 YY_RULE_SETUP
-#line 24 "Task1.lex"
+#line 24 "Task2.lex"
 {printf("L_PAREN\n"); 
             currentPosition += yyleng;}
 	YY_BREAK
 case 7:
 YY_RULE_SETUP
-#line 27 "Task1.lex"
+#line 27 "Task2.lex"
 {printf("R_PAREN\n"); 
             currentPosition += yyleng;}
 	YY_BREAK
 case 8:
 YY_RULE_SETUP
-#line 30 "Task1.lex"
+#line 30 "Task2.lex"
 {printf("EQUAL\n"); 
             currentPosition += yyleng;}
 	YY_BREAK
 case 9:
 YY_RULE_SETUP
-#line 33 "Task1.lex"
+#line 33 "Task2.lex"
 {currentPosition += yyleng;}
 	YY_BREAK
 case 10:
 /* rule 10 can match eol */
 YY_RULE_SETUP
-#line 35 "Task1.lex"
+#line 35 "Task2.lex"
 {currentLine += 1; 
             currentPosition += yyleng;}
 	YY_BREAK
 case 11:
 YY_RULE_SETUP
-#line 38 "Task1.lex"
+#line 38 "Task2.lex"
 {printf("Unrecognized Character \"%s\"\nthere is an error at line %d and column %d\n", yytext, currentLine, currentPosition);
             exit(0);}
 	YY_BREAK
 case 12:
 YY_RULE_SETUP
-#line 41 "Task1.lex"
+#line 41 "Task2.lex"
 ECHO;
 	YY_BREAK
 #line 799 "lex.yy.c"
@@ -1789,12 +1789,29 @@ void yyfree (void * ptr )
 
 #define YYTABLES_NAME "yytables"
 
-#line 41 "Task1.lex"
+#line 41 "Task2.lex"
 
 
 
 int main(int argc, char** argv)
 {
+  if(argc >= 2)
+  {
+    yyin = fopen(argv[1], "r");
+    if(yyin == 0)
+    {
+       printf("File Open Error");
+       exit(1);
+    }
+    else if(yyin == NULL)
+    {
+      yyin = stdin;
+    }   
+  } 
+  else
+  {
+    yyin = stdin;
+  }
   yylex();
 }
 
