@@ -1,5 +1,6 @@
 %{
-  int currentLine = 1, currentPosition = 1;  
+  int currentLine = 1;
+  int currentPosition = 1;  
 %}
 
 DIGIT  [0-9]

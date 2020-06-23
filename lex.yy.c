@@ -453,10 +453,15 @@ int yy_flex_debug = 0;
 #define YY_MORE_ADJ 0
 #define YY_RESTORE_YY_MORE_OFFSET
 char *yytext;
-#line 1 "Task2.lex"
-#line 2 "Task2.lex"
-  int currentLine = 1, currentPosition = 1;  
-#line 460 "lex.yy.c"
+#line 1 "Task3.lex"
+#line 2 "Task3.lex"
+  int currentLine = 1;
+  int currentPosition = 1;
+  int encounterIntNum = 0;
+  int encounterOpNum = 0;
+  int encounterParNum = 0;
+  int encounterEqNum = 0;  
+#line 465 "lex.yy.c"
 
 #define INITIAL 0
 
@@ -638,10 +643,10 @@ YY_DECL
 	register char *yy_cp, *yy_bp;
 	register int yy_act;
     
-#line 7 "Task2.lex"
+#line 12 "Task3.lex"
 
 
-#line 645 "lex.yy.c"
+#line 650 "lex.yy.c"
 
 	if ( !(yy_init) )
 		{
@@ -726,76 +731,84 @@ do_action:	/* This label is used only to access EOF actions. */
 
 case 1:
 YY_RULE_SETUP
-#line 9 "Task2.lex"
+#line 14 "Task3.lex"
 {printf("NUMBER %s\n", yytext); 
-            currentPosition += yyleng;}
+            currentPosition += yyleng;
+            encounterIntNum += 1;}
 	YY_BREAK
 case 2:
 YY_RULE_SETUP
-#line 12 "Task2.lex"
+#line 18 "Task3.lex"
 {printf("PLUS\n"); 
-            currentPosition += yyleng;}
+            currentPosition += yyleng;
+            encounterOpNum += 1;}
 	YY_BREAK
 case 3:
 YY_RULE_SETUP
-#line 15 "Task2.lex"
+#line 22 "Task3.lex"
 {printf("MINUS\n"); 
-            currentPosition += yyleng;}
+            currentPosition += yyleng;
+            encounterOpNum += 1;}
 	YY_BREAK
 case 4:
 YY_RULE_SETUP
-#line 18 "Task2.lex"
+#line 26 "Task3.lex"
 {printf("MULT\n"); 
-            currentPosition += yyleng;}
+            currentPosition += yyleng;
+            encounterOpNum += 1;}
 	YY_BREAK
 case 5:
 YY_RULE_SETUP
-#line 21 "Task2.lex"
+#line 30 "Task3.lex"
 {printf("DIV\n"); 
-            currentPosition += yyleng;}
+            currentPosition += yyleng;
+            encounterOpNum += 1;}
 	YY_BREAK
 case 6:
 YY_RULE_SETUP
-#line 24 "Task2.lex"
+#line 34 "Task3.lex"
 {printf("L_PAREN\n"); 
-            currentPosition += yyleng;}
+            currentPosition += yyleng;
+            encounterParNum += 1;}
 	YY_BREAK
 case 7:
 YY_RULE_SETUP
-#line 27 "Task2.lex"
+#line 38 "Task3.lex"
 {printf("R_PAREN\n"); 
-            currentPosition += yyleng;}
+            currentPosition += yyleng;
+            encounterParNum += 1;}
 	YY_BREAK
 case 8:
 YY_RULE_SETUP
-#line 30 "Task2.lex"
+#line 42 "Task3.lex"
 {printf("EQUAL\n"); 
-            currentPosition += yyleng;}
+            currentPosition += yyleng;
+            encounterEqNum += 1;}
 	YY_BREAK
 case 9:
 YY_RULE_SETUP
-#line 33 "Task2.lex"
+#line 46 "Task3.lex"
 {currentPosition += yyleng;}
 	YY_BREAK
 case 10:
 /* rule 10 can match eol */
 YY_RULE_SETUP
-#line 35 "Task2.lex"
+#line 48 "Task3.lex"
 {currentLine += 1; 
             currentPosition += yyleng;}
 	YY_BREAK
 case 11:
 YY_RULE_SETUP
-#line 38 "Task2.lex"
+#line 51 "Task3.lex"
 {printf("Unrecognized Character \"%s\"\nthere is an error at line %d and column %d\n", yytext, currentLine, currentPosition);
             exit(0);}
 	YY_BREAK
 case 12:
 YY_RULE_SETUP
-#line 41 "Task2.lex"
+#line 54 "Task3.lex"
 ECHO;
 	YY_BREAK
-#line 799 "lex.yy.c"
+#line 812 "lex.yy.c"
 case YY_STATE_EOF(INITIAL):
 	yyterminate();
 
@@ -1789,7 +1802,7 @@ void yyfree (void * ptr )
 
 #define YYTABLES_NAME "yytables"
 
-#line 41 "Task2.lex"
+#line 54 "Task3.lex"
 
 
 
@@ -1800,7 +1813,7 @@ int main(int argc, char** argv)
     yyin = fopen(argv[1], "r");
     if(yyin == 0)
     {
-       printf("File Open Error");
+       printf("File Open Error\n");
        exit(1);
     }
     else if(yyin == NULL)
@@ -1813,5 +1826,6 @@ int main(int argc, char** argv)
     yyin = stdin;
   }
   yylex();
+  printf("Encountered %d Integers, %d Operators, %d Parentheses, %d Equal Signs\n", encounterIntNum, encounterOpNum, encounterParNum, encounterEqNum);
 }
 

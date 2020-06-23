@@ -1,6 +1,10 @@
 %{
   int currentLine = 1;
-  int currentPosition = 1;  
+  int currentPosition = 1;
+  int encounterIntNum = 0;
+  int encounterOpNum = 0;
+  int encounterParNum = 0;
+  int encounterEqNum = 0;  
 %}
 
 DIGIT  [0-9]
@@ -8,28 +12,36 @@ DIGIT  [0-9]
 %%
 
 {DIGIT}+   {printf("NUMBER %s\n", yytext); 
-            currentPosition += yyleng;}
+            currentPosition += yyleng;
+            encounterIntNum += 1;}
 
 "+"        {printf("PLUS\n"); 
-            currentPosition += yyleng;}
+            currentPosition += yyleng;
+            encounterOpNum += 1;}
 
 "-"        {printf("MINUS\n"); 
-            currentPosition += yyleng;}
+            currentPosition += yyleng;
+            encounterOpNum += 1;}
 
 "*"        {printf("MULT\n"); 
-            currentPosition += yyleng;}
+            currentPosition += yyleng;
+            encounterOpNum += 1;}
 
 "/"        {printf("DIV\n"); 
-            currentPosition += yyleng;}
+            currentPosition += yyleng;
+            encounterOpNum += 1;}
 
 "("        {printf("L_PAREN\n"); 
-            currentPosition += yyleng;}
+            currentPosition += yyleng;
+            encounterParNum += 1;}
 
 ")"        {printf("R_PAREN\n"); 
-            currentPosition += yyleng;}
+            currentPosition += yyleng;
+            encounterParNum += 1;}
 
 "="        {printf("EQUAL\n"); 
-            currentPosition += yyleng;}
+            currentPosition += yyleng;
+            encounterEqNum += 1;}
 
 [ \t]+     {currentPosition += yyleng;}
 
@@ -61,4 +73,5 @@ int main(int argc, char** argv)
     yyin = stdin;
   }
   yylex();
+  printf("Encountered %d Integers, %d Operators, %d Parentheses, %d Equal Signs\n", encounterIntNum, encounterOpNum, encounterParNum, encounterEqNum);
 }
