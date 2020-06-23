@@ -3,7 +3,7 @@
   int currentPosition = 1;  
 %}
 
-DIGIT  [0-9]
+DIGIT   [0-9]
 
 %%
 

@@ -8,7 +8,7 @@
   int encounterEqNum = 0;  
 %}
 
-DIGIT  [0-9]
+DIGIT   [0-9]
 
 %%
 
